@@ -149,17 +149,14 @@
                     {
                         "in": "query",
                         "name": "date_from",
-                        "type": "string"
+                        "type": "string",
+                        "format": "date"
                     },
                     {
                         "in": "query",
                         "name": "date_to",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "date",
-                        "type": "string"
+                        "type": "string",
+                        "format": "date"
                     },
                     {
                         "in": "sort",
