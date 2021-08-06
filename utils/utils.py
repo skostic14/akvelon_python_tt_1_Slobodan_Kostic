@@ -5,7 +5,7 @@ slobodan.kostic14@gmail.com
 """
 
 import re
-from constants import DATE_FORMAT
+from utils.constants import DATE_FORMAT
 
 def check_email_validity(email):
     """ Checks e-mail validity (i.e. if only one @ is found and at least one (sub)domain)

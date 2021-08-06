@@ -12,13 +12,12 @@ import sqlite3
 from flask import Flask, request, g
 from flask_swagger_ui import get_swaggerui_blueprint
 
-from constants import DATABASE_FILENAME
-from transaction import Transaction
-import transaction_handler
-from user import User
-import user_handler
-from utils import check_email_validity, validate_user_request_dict, validate_transaction_dict, validate_date_format
+from crud import transaction_handler, user_handler
+from crud.user import User
+from crud.transaction import Transaction
 
+from utils.constants import DATABASE_FILENAME
+from utils.utils import validate_date_format, validate_transaction_dict, validate_user_request_dict, check_email_validity
 
 app = Flask(__name__)
 SWAGGER_URL = '/swagger'
