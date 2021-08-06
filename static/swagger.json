@@ -1,0 +1,253 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Slobodan Kostic",
+        "contact": {
+        "email": "slobodan.kostic14@gmail.com"
+        }
+    },
+    "paths": {
+        "/create_user": {
+            "post": {
+                "summary": "Insert new user",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully inserted"
+                    },
+                    "400": {
+                        "description": "Incorrect paramters"
+                    }
+                }
+            }
+        },
+        "/modify_user": {
+            "post": {
+                "summary": "Modify given user",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully modified"
+                    },
+                    "400": {
+                        "description": "Incorrect paramters"
+                    }
+                }
+            }
+        },
+        "/get_users": {
+            "post": {
+                "summary": "Get users for following filters",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of users"
+                    }
+                }
+            }
+        },
+        "/delete_user": {
+            "get": {
+                "summary": "Delete user by ID",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "user_id",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully deleted"
+                    }
+                }
+            }
+        },
+        "/create_transaction": {
+            "post": {
+                "summary": "Create new transaction",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Transaction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction successfully inserted"
+                    },
+                    "400": {
+                        "description": "Incorrect paramters"
+                    }
+                }
+            }
+        },
+        "/modify_transaction": {
+            "post": {
+                "summary": "Modify given transaction",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Transaction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction successfully modified"
+                    },
+                    "400": {
+                        "description": "Incorrect paramters"
+                    }
+                }
+            }
+        },
+        "/get_transactions": {
+            "get": {
+                "summary": "Get transaction by setting any of the filters",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "id",
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "user_id",
+                        "type": "integer"
+                    },
+                    {
+                        "in": "query",
+                        "name": "date_from",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "date_to",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "date",
+                        "type": "string"
+                    },
+                    {
+                        "in": "sort",
+                        "name": "id",
+                        "type": "string",
+                        "enum": ["date", "amount"]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of transactions"
+                    },
+                    "400": {
+                        "description": "Incorrect paramters (invalid date format)"
+                    }
+                }
+            }
+        },
+        "/delete_transaction": {
+            "get": {
+                "summary": "Delete transaction by its ID",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "user_id",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transaction successfully deleted"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "id":{
+                    "description": "Unique user ID",
+                    "required": true,
+                    "type": "integer"
+                },
+                "first_name": {
+                    "description": "First Name",
+                    "required": true,
+                    "type": "string"
+                },
+                "last_name": {
+                    "description": "Last Name",
+                    "required": true,
+                    "type": "string"
+                },
+                "email": {
+                    "description": "Email",
+                    "required": true,
+                    "type": "string"
+                }
+            }
+        },
+        "Transaction": {
+            "type": "object",
+            "properties": {
+                "id":{
+                    "description": "Unique transaction ID",
+                    "required": true,
+                    "type": "integer"
+                },
+                "user_id": {
+                    "description": "User ID",
+                    "required": true,
+                    "type": "integer"
+                },
+                "amount": {
+                    "description": "Amount of money to be spent/received",
+                    "required": true,
+                    "type": "number",
+                    "format": "float"
+                },
+                "date": {
+                    "description": "Date (YYYY-MM-DD)",
+                    "required": true,
+                    "type": "string",
+                    "format": "date"
+                }
+            }
+        }
+    }
+}
